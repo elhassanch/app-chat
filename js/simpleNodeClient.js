@@ -58,7 +58,7 @@ function sendData(){
 }
 
 
-var socket = io.connect('https://zahya-hh.herokuapp.com');
+var socket = io.connect('https://zho-max-hh.herokuapp.com');
 
 channelButton.onclick=getChannel;
 function getChannel(){
