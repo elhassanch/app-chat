@@ -58,7 +58,7 @@ function sendData(){
 }
 
 
-var socket = io.connect('http://localhost:8181');
+var socket = io.connect('http://localhost:3001');
 
 channelButton.onclick=getChannel;
 function getChannel(){
