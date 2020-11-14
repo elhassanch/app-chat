@@ -2,7 +2,7 @@
   "name": "github",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.html",
   "dependencies": {
     "cors": "^2.8.5",
     "http": "^0.0.1-security",
