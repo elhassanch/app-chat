@@ -58,7 +58,7 @@ function sendData(){
 }
 
 
-var socket = io.connect('http://localhost:3001');
+var socket = io.connect('https://mpt-chat.herokuapp.com');
 
 channelButton.onclick=getChannel;
 function getChannel(){
