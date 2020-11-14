@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC client</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="infoLogin">
+        <input id="channelInput" placeholder="Enter signaling channel name: ">
+        <input id="usernameInput" placeholder="Enter a username : ">
+        <button id="channelButton">Enter</button>
+    </div>
+    
+
+    <section class="chat__section">
+        <div class="brand">
+            <h1 id="nameRoom"></h1>
+        </div>
+
+        <div id="dataChannelReceive" class="message__area">
+        </div>
+
+        <div>
+            <textarea id="dataChannelSend" cols="30" rows="1" placeholder="Write a message..."></textarea>
+            <button id="sendButton">Send</button>
+        </div>
+
+    </section>
+    <script src='socket.io/socket.io.js'></script>
+    <div id="scratchPad"></div>
+    <script type="text/javascript" src="js/simpleNodeClient.js"></script>
+</body>
+
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+    <head>
+        <title> WebRTC client</title>
+    </head>
+    <body>
+        <input id="channelInput" placeholder="Enter signaling channel name: ">
+        <input id="usernameInput" placeholder="Enter a username : ">
+        <button id="channelButton">Enter</button>
+
+        <textarea rows="5" cols="50" id="dataChannelSend"   placeholder="Write your message"></textarea>
+        <textarea rows="5" cols="50" id="dataChannelReceive" disabled ></textarea>
+        <button id="sendButton">Send</button>
+
+         <script src='/socket.io/socket.io.js'></script> -->
+        <!-- <script src='socket.io/socket.io.js'></script>
+        <div id="scratchPad"></div>
+        <script type="text/javascript" src="js/simpleNodeClient.js"></script>
+    </body>
+</html> --> 
