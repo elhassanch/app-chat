@@ -14,6 +14,7 @@ var dataChannelReceive=document.getElementById("dataChannelReceive");
 var x=0;
 var sendButton = document.getElementById("sendButton");
 sendButton.disabled = false;
+dataChannelSend.disabled = false;
 
 
 
@@ -39,14 +40,17 @@ function sendData(){
         document.getElementById("dataChannelSend").value = '';
         appendMessage(myMessage, 'outgoing');
         scrollToBottom();
-        if(myMessage == "Bye"){
-            div.insertAdjacentHTML( 'beforeEnd', '<p>Time: ' (performance.now() / 1000).toFixed(3) + ' --> Sending "Bye" to server...</p>');
+        if(myMessage[0] == "Bye"){
+            appendInfo("<marquee behavior='scroll' direction='left' style='color:red'>Sending 'Bye' to server</marquee>");
+            scrollToBottom();
             console.log('Sending "Bye" to server');
             socket.emit('Bye', channel);
-            div.insertAdjacentHTML( 'beforeEnd', '<p>Time: ' +
-                (performance.now() / 1000).toFixed(3) +' --> Going to disconnect...</p>');
+            appendInfo("<p style='color:red'>Going to disconnect...</p>");
+            scrollToBottom();
             console.log('Going to disconnect...');
             socket.disconnect();
+            sendButton.disabled = true;
+            dataChannelSend.disabled = true;
         }else{
             socket.emit('response', {
             channel: channel,
@@ -68,6 +72,7 @@ function getChannel(){
     if (channel !== "") {
         appendInfo('Trying to create or join channel: ', channel);
         scrollToBottom();
+        socket.emit('clientsID', username);
         socket.emit('create or join', channel);
         nameRoom.appendChild(document.createTextNode(channel));
         document.querySelector('.infoLogin').style.visibility = "hidden";
@@ -100,7 +105,7 @@ socket.on('remotePeerJoining', function (channel){
     console.log('Request to join ' + channel);
     console.log('You are the initiator!');
    
-    appendInfo(username + " Request to join  "+ channel + "!");
+    appendInfo( "A new user request to join  "+ channel + "!");
     scrollToBottom();
 });
 
@@ -156,15 +161,18 @@ socket.on('response', function (response){
 
 socket.on('Bye', function (){
     console.log('Got "Bye" from other peer! Going to disconnect...');
-    div.insertAdjacentHTML( 'beforeEnd', '<p>Time: ' +
-        (performance.now() / 1000).toFixed(3) + ' --> Got "Bye" from other peer!</p>');
-    div.insertAdjacentHTML( 'beforeEnd', '<p>Time: ' +
-        (performance.now() / 1000).toFixed(3) + ' --> Sending "Ack" to server</p>');
+    appendInfo("<marquee behavior='scroll' direction='left' style='color:red'>Got 'Bye' from the other peer</marquee>");
+    scrollToBottom();
+    appendInfo("<p style='color:red'>Sending 'Ack' to server</p>");
+    scrollToBottom();
     console.log('Sending "Ack" to server');
     socket.emit('Ack');
-    div.insertAdjacentHTML( 'beforeEnd', '<p>Time: ' +(performance.now() / 1000).toFixed(3) + ' --> Going to disconnect...</p>');
+    appendInfo("<p style='color:red'>Going to disconnect...</</p>");
+    scrollToBottom();
     console.log('Going to disconnect...');
     socket.disconnect();
+    sendButton.disabled = true;
+    dataChannelSend.disabled = true;
  });
 
  function appendMessage(msg, type) {
@@ -184,7 +192,7 @@ function appendInfo(info) {
     let className = "info";
     mainDiv.classList.add(className, 'info');
     let markup = `
-        <h4>${info}</h4>
+        <h4 style='font-size:15px;'>${info}</h4>
         <br>
     `;
     mainDiv.innerHTML = markup;
