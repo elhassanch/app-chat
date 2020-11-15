@@ -6,8 +6,6 @@
 }
 
 body {
-    height: 100%;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,6 +15,7 @@ body {
 }
 
 .infoLogin{
+    margin-top: 2cm;
     height: 100%;
     width: 100%;
     display: flex;
@@ -31,6 +30,8 @@ section.chat__section {
     background: #fff;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     visibility: hidden;
+    justify-content: center;
+    margin-top: -6cm;
 }
 .brand {
     padding: 20px;
@@ -88,4 +89,8 @@ textarea {
     color: rebeccapurple;
     font-size: 8px;
     text-align: center;
+}
+
+.down{
+    margin: 0 5px 15px 5px;
 }
