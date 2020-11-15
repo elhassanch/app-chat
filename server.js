@@ -2,6 +2,8 @@ var static = require('node-static');
 var http = require('http');
 var i=0;
 
+var allCLients=[];
+
 var file = new(static.Server)();
 
 var app = http.createServer(function (req, res) {
@@ -23,7 +25,11 @@ io.sockets.on('connection', function (socket){
         log('S --> Got message: ', message);
         socket.broadcast.to(message.channel).emit('message',  message.message);
     });
-
+    
+    socket.on('clientsID', function (username) {
+        allCLients[socket.id]=username;
+    });
+    
     socket.on('create or join', function (channel) {
 
         // var clientsList = io.sockets.adapter.rooms[channel];
